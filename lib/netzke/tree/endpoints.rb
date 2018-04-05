@@ -11,6 +11,7 @@ module Netzke
           #data["parent_id"] = params["parent_id"] unless params.keys.select{|k| k.include? 'parent__'}
           client.merge!(component_instance(:add_window).
                       component_instance(:add_form).
+                      #TODO: Review why tree validations are not working with 'submit(data, client)'
                       #submit(data, client))
                       invoke_endpoint(:submit, [params]))
           on_data_changed if client.netzke_set_form_values.present?
